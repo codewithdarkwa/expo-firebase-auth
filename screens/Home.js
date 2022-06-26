@@ -12,7 +12,6 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text>Welcome {user?.email}!</Text>
-
       <Button title="Sign Out" style={styles.button} onPress={() => signOut(auth)} />
     </View>
   );
