@@ -8,7 +8,7 @@ const auth = getAuth();
 
 export default function HomeScreen() {
   const { user } = useAuthentication();
-
+console.log(user);
   return (
     <View style={styles.container}>
       <Text>Welcome {user?.email}!</Text>
