@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -34,11 +34,9 @@ const SignIn = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Signin screen!</Text>
-
       {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
-
       <View style={styles.controls}>
+        <Image source={require('../assets/logo.png')} style={{width:150,height:150,alignSelf:'center'}}/>
         <Input
           placeholder='Email'
           containerStyle={styles.control}

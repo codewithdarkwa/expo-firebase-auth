@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -34,11 +34,9 @@ const SignUp  = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Signup screen!</Text>
-
       {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
-
       <View style={styles.controls}>
+      <Image source={require('../assets/logo.png')} style={{width:150,height:150,alignSelf:'center'}}/>
         <Input
           placeholder='Email'
           containerStyle={styles.control}
@@ -61,7 +59,17 @@ const SignUp  = ({ navigation }) => {
             size={16}
           />}
         />
-
+        <Input
+          placeholder='confirm password'
+          containerStyle={styles.control}
+          value={value.password}
+          onChangeText={(text) => setValue({ ...value, password: text })}
+          secureTextEntry={true}
+          leftIcon={<Icon
+            name='key'
+            size={16}
+          />}
+        />
         <Button title="Sign up" buttonStyle={styles.control} onPress={signUp} />
       </View>
     </View>
