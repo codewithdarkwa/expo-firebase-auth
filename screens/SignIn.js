@@ -1,19 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import React,{useState} from 'react';
+import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const auth = getAuth();
 
-const SignIn = () => {
-  const [value, setValue] = React.useState({
-    email: '',
-    password: '',
-    error: ''
-  })
-
-  async function signIn() {
+const SignIn = ({ navigation}) => {
+  const [value, setValue] = useState({ email: '', password: '', error: ''})
+  async function login() {
     if (value.email === '' || value.password === '') {
       setValue({
         ...value,
@@ -34,33 +29,37 @@ const SignIn = () => {
 
   return (
     <View style={styles.container}>
-      {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
-      <View style={styles.controls}>
+      <View style={{}}>
         <Image source={require('../assets/logo.png')} style={{width:150,height:150,alignSelf:'center'}}/>
         <Input
           placeholder='Email'
-          containerStyle={styles.control}
+          containerStyle={{marginTop: 10}}
           value={value.email}
           onChangeText={(text) => setValue({ ...value, email: text })}
           leftIcon={<Icon
             name='envelope'
             size={16}
-          />}
-        />
+            />}
+            />
 
         <Input
           placeholder='Password'
-          containerStyle={styles.control}
+          containerStyle={{marginTop: 10}}
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
           secureTextEntry={true}
           leftIcon={<Icon
             name='key'
             size={16}
-          />}
-        />
-
-        <Button title="Sign in" buttonStyle={styles.control} onPress={signIn} />
+            />}
+            />
+       {!!value.error && <View><Text style={styles.error}>{value.error}</Text></View>}
+        <Button title="Sign in" buttonStyle={{marginTop:10}} onPress={login} />
+        <Text style={{marginTop:5,fontSize:17}}> Don't have an account yet ? 
+        <TouchableOpacity onPress={()=>navigation.navigate('Sign Up')} style={{color:'blue',marginLeft:10}}>
+                Sign up here 
+          </TouchableOpacity>
+          </Text>
       </View>
     </View>
   );
@@ -69,25 +68,14 @@ const SignIn = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    bottom:50
   },
-
-  controls: {
-    flex: 1,
-  },
-
-  control: {
-    marginTop: 10
-  },
-
   error: {
     marginTop: 10,
-    padding: 10,
-    color: '#fff',
-    backgroundColor: '#D54826FF',
+    color: 'red',
   }
 });
 

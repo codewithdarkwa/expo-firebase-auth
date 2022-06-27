@@ -3,6 +3,7 @@ import { StyleSheet, Text, View,Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { TouchableOpacity } from 'react-native-web';
 
 const auth = getAuth()
 const SignUp  = ({ navigation }) => {
@@ -12,7 +13,7 @@ const SignUp  = ({ navigation }) => {
     error: ''
   })
 
-  async function signUp() {
+  async function createAccount() {
     if (value.email === '' || value.password === '') {
       setValue({
         ...value,
@@ -35,11 +36,11 @@ const SignUp  = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
-      <View style={styles.controls}>
+      <View style={{flex: 1}}>
       <Image source={require('../assets/logo.png')} style={{width:150,height:150,alignSelf:'center'}}/>
         <Input
           placeholder='Email'
-          containerStyle={styles.control}
+          containerStyle={{marginTop: 10}}
           value={value.email}
           onChangeText={(text) => setValue({ ...value, email: text })}
           leftIcon={<Icon
@@ -50,10 +51,10 @@ const SignUp  = ({ navigation }) => {
 
         <Input
           placeholder='Password'
-          containerStyle={styles.control}
+          containerStyle={{marginTop:10}}
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
-          secureTextEntry={true}
+          secureTextEntry
           leftIcon={<Icon
             name='key'
             size={16}
@@ -61,16 +62,21 @@ const SignUp  = ({ navigation }) => {
         />
         <Input
           placeholder='confirm password'
-          containerStyle={styles.control}
+          containerStyle={{marginTop:10}}
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
-          secureTextEntry={true}
+          secureTextEntry
           leftIcon={<Icon
             name='key'
             size={16}
           />}
         />
-        <Button title="Sign up" buttonStyle={styles.control} onPress={signUp} />
+        <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
+          <Text style={{marginTop:5,fontSize:17}}>Already have an account?
+          <TouchableOpacity onPress={()=>navigation.navigate('Sign In')} style={{color:'blue',marginLeft:10}}>
+                Login here 
+          </TouchableOpacity>
+          </Text>
       </View>
     </View>
   );
@@ -84,15 +90,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
-  controls: {
-    flex: 1,
-  },
-
-  control: {
-    marginTop: 10
-  },
-
   error: {
     marginTop: 10,
     padding: 10,
