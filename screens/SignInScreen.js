@@ -37,10 +37,7 @@ const SignInScreen = ({ navigation}) => {
           containerStyle={{marginTop: 10}}
           value={value.email}
           onChangeText={(text) => setValue({ ...value, email: text })}
-          leftIcon={<Icon
-            name='envelope'
-            size={16}
-            />}
+          leftIcon={<Icon name='envelope' size={16}/>}
             />
 
         <Input
@@ -49,12 +46,10 @@ const SignInScreen = ({ navigation}) => {
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
           secureTextEntry={true}
-          leftIcon={<Icon
-            name='key'
-            size={16}
-            />}
+          leftIcon={<Icon name='key' size={16}/>}
             />
        {!!value.error && <Text style={styles.error}>{value.error}</Text>}
+
         <Button title="Sign in" buttonStyle={{marginTop:10}} onPress={login} />
         <Text style={{marginTop:5,fontSize:17}}> Don't have an account yet ? 
         <TouchableOpacity onPress={()=>navigation.navigate('Sign Up')} style={{color:'blue',marginLeft:10}}>
