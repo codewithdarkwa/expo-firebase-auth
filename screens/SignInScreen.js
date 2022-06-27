@@ -6,8 +6,11 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const auth = getAuth();
 
-const SignIn = ({ navigation}) => {
+const SignInScreen = ({ navigation}) => {
   const [value, setValue] = useState({ email: '', password: '', error: ''})
+  
+  
+  
   async function login() {
     if (value.email === '' || value.password === '') {
       setValue({
@@ -79,4 +82,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignIn;
+export default SignInScreen;

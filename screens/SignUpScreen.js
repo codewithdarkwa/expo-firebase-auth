@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { TouchableOpacity } from 'react-native-web';
 
 const auth = getAuth()
-const SignUp  = ({ navigation }) => {
+const SignUpScreen  = ({ navigation }) => {
   const [value, setValue] = React.useState({
     email: '',
     password: '',
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignUp;
+export default SignUpScreen;
