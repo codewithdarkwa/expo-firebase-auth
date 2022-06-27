@@ -66,7 +66,7 @@ const SignUpScreen  = ({ navigation }) => {
             size={16}
             />}
             />
-            {!!value.error && <View><Text style={styles.error}>{value.error}</Text></View>}
+            {!!value.error &&<Text style={styles.error}>{value.error}</Text>}
         <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
           <Text style={{marginTop:5,fontSize:17}}>Already have an account?
           <TouchableOpacity onPress={()=>navigation.navigate('Sign In')} style={{color:'blue',marginLeft:10}}>
