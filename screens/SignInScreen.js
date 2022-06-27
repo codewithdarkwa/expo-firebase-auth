@@ -9,13 +9,11 @@ const auth = getAuth();
 const SignInScreen = ({ navigation}) => {
   const [value, setValue] = useState({ email: '', password: '', error: ''})
   
-  
-  
   async function login() {
     if (value.email === '' || value.password === '') {
       setValue({
         ...value,
-        error: 'Email and password are mandatory.'
+        error: 'Require fields are missing'
       })
       return;
     }
@@ -32,7 +30,7 @@ const SignInScreen = ({ navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={{}}>
+      <View>
         <Image source={require('../assets/logo.png')} style={{width:150,height:150,alignSelf:'center'}}/>
         <Input
           placeholder='Email'

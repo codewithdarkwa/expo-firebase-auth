@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import { StyleSheet, Text, View,Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
@@ -7,17 +7,13 @@ import { TouchableOpacity } from 'react-native-web';
 
 const auth = getAuth()
 const SignUpScreen  = ({ navigation }) => {
-  const [value, setValue] = React.useState({
-    email: '',
-    password: '',
-    error: ''
-  })
+  const [value, setValue] = useState({email: '', password: '', error: ''})
 
   async function createAccount() {
     if (value.email === '' || value.password === '') {
       setValue({
         ...value,
-        error: 'Email and password are mandatory.'
+        error: 'Require fields are missing'
       })
       return;
     }
@@ -35,8 +31,7 @@ const SignUpScreen  = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
-      <View style={{flex: 1}}>
+      <View>
       <Image source={require('../assets/logo.png')} style={{width:150,height:150,alignSelf:'center'}}/>
         <Input
           placeholder='Email'
@@ -46,8 +41,8 @@ const SignUpScreen  = ({ navigation }) => {
           leftIcon={<Icon
             name='envelope'
             size={16}
-          />}
-        />
+            />}
+            />
 
         <Input
           placeholder='Password'
@@ -58,8 +53,8 @@ const SignUpScreen  = ({ navigation }) => {
           leftIcon={<Icon
             name='key'
             size={16}
-          />}
-        />
+            />}
+            />
         <Input
           placeholder='confirm password'
           containerStyle={{marginTop:10}}
@@ -69,8 +64,9 @@ const SignUpScreen  = ({ navigation }) => {
           leftIcon={<Icon
             name='key'
             size={16}
-          />}
-        />
+            />}
+            />
+            {!!value.error && <View><Text style={styles.error}>{value.error}</Text></View>}
         <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
           <Text style={{marginTop:5,fontSize:17}}>Already have an account?
           <TouchableOpacity onPress={()=>navigation.navigate('Sign In')} style={{color:'blue',marginLeft:10}}>
@@ -89,12 +85,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    bottom:50,
   },
   error: {
     marginTop: 10,
-    padding: 10,
-    color: '#fff',
-    backgroundColor: '#D54826FF',
+    color: 'red',
   }
 });
 
