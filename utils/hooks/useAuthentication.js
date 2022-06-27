@@ -11,5 +11,5 @@ export function useAuthentication() {
       return unsubscribeFromAuthStatusChanged;
     });
   }, []);
-  return user;
+  return {user};
 }
