@@ -38,22 +38,15 @@ const SignUpScreen  = ({ navigation }) => {
           containerStyle={{marginTop: 10}}
           value={value.email}
           onChangeText={(text) => setValue({ ...value, email: text })}
-          leftIcon={<Icon
-            name='envelope'
-            size={16}
-            />}
+          leftIcon={<Icon name='envelope' size={16}/>}
             />
-
         <Input
           placeholder='Password'
           containerStyle={{marginTop:10}}
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
           secureTextEntry
-          leftIcon={<Icon
-            name='key'
-            size={16}
-            />}
+          leftIcon={<Icon name='key' size={16}/>}
             />
         <Input
           placeholder='confirm password'
@@ -61,10 +54,7 @@ const SignUpScreen  = ({ navigation }) => {
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
           secureTextEntry
-          leftIcon={<Icon
-            name='key'
-            size={16}
-            />}
+          leftIcon={<Icon name='key' size={16}/>}
             />
             {!!value.error &&<Text style={styles.error}>{value.error}</Text>}
         <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
