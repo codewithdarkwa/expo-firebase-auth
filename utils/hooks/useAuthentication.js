@@ -10,9 +10,6 @@ export function useAuthentication() {
       user ? setUser(user): setUser(undefined);
       return unsubscribeFromAuthStatusChanged;
     });
-
   }, []);
-  return {
-    user
-  };
+  return user;
 }

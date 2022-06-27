@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useAuthentication } from '../utils/hooks/useAuthentication';
 import { Button } from 'react-native-elements';
@@ -11,7 +10,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text>Welcome {user?.email}!</Text>
-      <Button title="Sign Out" style={styles.button} onPress={() => signOut(auth)} />
+      <Button title="Sign Out" style={{marginTop:10}} onPress={() => signOut(auth)} />
     </View>
   );
 }
@@ -23,7 +22,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
-    marginTop: 10
-  }
 });
