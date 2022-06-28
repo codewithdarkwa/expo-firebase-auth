@@ -11,20 +11,14 @@ const SignInScreen = ({ navigation}) => {
   
   async function login() {
     if (value.email === '' || value.password === '') {
-      setValue({
-        ...value,
-        error: 'Require fields are missing'
-      })
+      setValue({ ...value, error: 'Require fields are missing'})
       return;
     }
 
     try {
       await signInWithEmailAndPassword(auth, value.email, value.password);
     } catch (error) {
-      setValue({
-        ...value,
-        error: error.message,
-      })
+      setValue({...value,error: error.message,})
     }
   }
 
