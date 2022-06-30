@@ -19,9 +19,7 @@ const SignUpScreen  = ({ navigation }) => {
 }
   async function createAccount() {
     if (email === '' || password === '') {
-      // setValue({
-      //   error: 'Require fields are missing'
-      // })
+     setValidationMessage('required filled missing')
       return;
     }
   
@@ -29,7 +27,7 @@ const SignUpScreen  = ({ navigation }) => {
       await createUserWithEmailAndPassword(auth, email, password);
       navigation.navigate('Sign In');
     } catch (error) {
-      console.log(error);
+      setValidationMessage(error.message);
     }
   }
 
@@ -60,7 +58,7 @@ const SignUpScreen  = ({ navigation }) => {
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
             />
-            {!!value.error &&<Text style={styles.error}>{value.error}</Text>}
+            {<Text style={styles.error}>{validationMessage}</Text>}
         <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
           <Text style={{marginTop:5,fontSize:17}}>Already have an account?
           <TouchableOpacity onPress={()=>navigation.navigate('Sign In')} style={{color:'blue',marginLeft:10}}>
