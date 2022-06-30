@@ -13,7 +13,7 @@ const SignUpScreen  = ({ navigation }) => {
   const [validationMessage, setValidationMessage] = useState('')
 
 
-  let validateAndSet = (value, valueToCompare, setValue) =>{
+  let validateAndSet = (value, valueToCompare, setValue) => {
   value !== valueToCompare ? setValidationMessage('Password do not match') : setValidationMessage('')
    setValue(value);  
 }
@@ -48,7 +48,7 @@ const SignUpScreen  = ({ navigation }) => {
           placeholder='Password'
           containerStyle={{marginTop:10}}
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(value) => validateAndSet(value,confirmPassword,setPassword)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
             />
@@ -56,7 +56,7 @@ const SignUpScreen  = ({ navigation }) => {
           placeholder='confirm password'
           containerStyle={{marginTop:10}}
           value={confirmPassword}
-          onChangeText={(text) => setConfirmPassword(text)}
+          onChangeText={(value) => validateAndSet(value,password,setConfirmPassword)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
             />
