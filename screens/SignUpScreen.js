@@ -7,25 +7,29 @@ import { TouchableOpacity } from 'react-native-web';
 
 const auth = getAuth()
 const SignUpScreen  = ({ navigation }) => {
-  const [value, setValue] = useState({email: '', password: '', error: ''})
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [validationMessage, setValidationMessage] = useState('')
 
+
+  let validateAndSet = (value, valueToCompare, setValue) =>{
+  value !== valueToCompare ? setValidationMessage('Password do not match') : setValidationMessage('')
+   setValue(value);  
+}
   async function createAccount() {
-    if (value.email === '' || value.password === '') {
-      setValue({
-        ...value,
-        error: 'Require fields are missing'
-      })
+    if (email === '' || password === '') {
+      // setValue({
+      //   error: 'Require fields are missing'
+      // })
       return;
     }
   
     try {
-      await createUserWithEmailAndPassword(auth, value.email, value.password);
+      await createUserWithEmailAndPassword(auth, email, password);
       navigation.navigate('Sign In');
     } catch (error) {
-      setValue({
-        ...value,
-        error: error.message,
-      })
+      console.log(error);
     }
   }
 
@@ -36,23 +40,23 @@ const SignUpScreen  = ({ navigation }) => {
         <Input
           placeholder='Email'
           containerStyle={{marginTop: 10}}
-          value={value.email}
-          onChangeText={(text) => setValue({ ...value, email: text })}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
           leftIcon={<Icon name='envelope' size={16}/>}
             />
         <Input
           placeholder='Password'
           containerStyle={{marginTop:10}}
-          value={value.password}
-          onChangeText={(text) => setValue({ ...value, password: text })}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
             />
         <Input
           placeholder='confirm password'
           containerStyle={{marginTop:10}}
-          value={value.password}
-          onChangeText={(text) => setValue({ ...value, password: text })}
+          value={confirmPassword}
+          onChangeText={(text) => setConfirmPassword(text)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
             />
