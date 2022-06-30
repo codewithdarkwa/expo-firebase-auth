@@ -7,18 +7,20 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 const auth = getAuth();
 
 const SignInScreen = ({ navigation}) => {
-  const [value, setValue] = useState({ email: '', password: '', error: ''})
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const [validationMessage,setvalidationMessage] = useState('');
   
   async function login() {
-    if (value.email === '' || value.password === '') {
-      setValue({ ...value, error: 'Require fields are missing'})
+    if (email === '' || password === '') {
+      setvalidationMessage('required filled missing')
       return;
     }
 
     try {
-      await signInWithEmailAndPassword(auth, value.email, value.password);
+      await signInWithEmailAndPassword(auth,email, password);
     } catch (error) {
-      setValue({...value,error: error.message,})
+     setvalidationMessage(error.message);
     }
   }
 
@@ -30,7 +32,7 @@ const SignInScreen = ({ navigation}) => {
           placeholder='Email'
           containerStyle={{marginTop: 10}}
           value={value.email}
-          onChangeText={(text) => setValue({ ...value, email: text })}
+          onChangeText={(text) => setEmail(text)}
           leftIcon={<Icon name='envelope' size={16}/>}
             />
 
@@ -38,11 +40,11 @@ const SignInScreen = ({ navigation}) => {
           placeholder='Password'
           containerStyle={{marginTop: 10}}
           value={value.password}
-          onChangeText={(text) => setValue({ ...value, password: text })}
+          onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}
           leftIcon={<Icon name='key' size={16}/>}
             />
-       {!!value.error && <Text style={styles.error}>{value.error}</Text>}
+       {<Text style={styles.error}>{validationMessage}</Text>}
 
         <Button title="Sign in" buttonStyle={{marginTop:10}} onPress={login} />
         <Text style={{marginTop:5,fontSize:17}}> Don't have an account yet ? 

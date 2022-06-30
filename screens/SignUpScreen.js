@@ -46,7 +46,7 @@ const SignUpScreen  = ({ navigation }) => {
           placeholder='Password'
           containerStyle={{marginTop:10}}
           value={password}
-          onChangeText={(value) => validateAndSet(value,confirmPassword,setPassword)}
+          onChangeText={(value) => validateAndSet(value, confirmPassword, setPassword)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
             />
@@ -54,7 +54,7 @@ const SignUpScreen  = ({ navigation }) => {
           placeholder='confirm password'
           containerStyle={{marginTop:10}}
           value={confirmPassword}
-          onChangeText={(value) => validateAndSet(value,password,setConfirmPassword)}
+          onChangeText={(value) => validateAndSet(value, password, setConfirmPassword)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
             />
