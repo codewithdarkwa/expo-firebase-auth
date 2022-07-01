@@ -31,7 +31,7 @@ const SignInScreen = ({ navigation}) => {
         <Input
           placeholder='Email'
           containerStyle={{marginTop: 10}}
-          value={value.email}
+          value={email}
           onChangeText={(text) => setEmail(text)}
           leftIcon={<Icon name='envelope' size={16}/>}
             />
@@ -39,7 +39,7 @@ const SignInScreen = ({ navigation}) => {
         <Input
           placeholder='Password'
           containerStyle={{marginTop: 10}}
-          value={value.password}
+          value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}
           leftIcon={<Icon name='key' size={16}/>}
@@ -49,7 +49,7 @@ const SignInScreen = ({ navigation}) => {
         <Button title="Sign in" buttonStyle={{marginTop:10}} onPress={login} />
         <Text style={{marginTop:5,fontSize:17}}> Don't have an account yet ? 
         <TouchableOpacity onPress={()=>navigation.navigate('Sign Up')} style={{color:'blue',marginLeft:10}}>
-                Sign up here 
+                <Text>Sign up here</Text> 
           </TouchableOpacity>
           </Text>
       </View>

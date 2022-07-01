@@ -22,9 +22,7 @@ const SignUpScreen  = ({ navigation }) => {
   async function createAccount() {
     email === '' || password === '' 
     ? setValidationMessage('required filled missing')
-    : "";
-      return;
-    }
+    : ''
   
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -32,7 +30,7 @@ const SignUpScreen  = ({ navigation }) => {
     } catch (error) {
       setValidationMessage(error.message);
     }
-
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -62,11 +60,13 @@ const SignUpScreen  = ({ navigation }) => {
             />
             {<Text style={styles.error}>{validationMessage}</Text>}
         <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
+        <View>
           <Text style={{marginTop:5,fontSize:17}}>Already have an account?
           <TouchableOpacity onPress={()=>navigation.navigate('Sign In')} style={{color:'blue',marginLeft:10}}>
-                Login here 
+               <Text>Login here </Text> 
           </TouchableOpacity>
           </Text>
+        </View>
       </View>
     </View>
   );
