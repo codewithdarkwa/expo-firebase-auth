@@ -23,7 +23,6 @@ const SignUpScreen  = ({ navigation }) => {
     email === '' || password === '' 
     ? setValidationMessage('required filled missing')
     : ''
-  
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       navigation.navigate('Sign In');
