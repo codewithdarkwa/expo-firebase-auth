@@ -14,12 +14,15 @@ const SignUpScreen  = ({ navigation }) => {
 
 
   let validateAndSet = (value, valueToCompare, setValue) => {
-  value !== valueToCompare ? setValidationMessage('Password do not match') : setValidationMessage('')
+  value !== valueToCompare 
+  ? setValidationMessage('Password do not match') 
+  : setValidationMessage('')
    setValue(value);  
 }
   async function createAccount() {
-    if (email === '' || password === '') {
-     setValidationMessage('required filled missing')
+    email === '' || password === '' 
+    ? setValidationMessage('required filled missing')
+    : "";
       return;
     }
   
@@ -29,7 +32,6 @@ const SignUpScreen  = ({ navigation }) => {
     } catch (error) {
       setValidationMessage(error.message);
     }
-  }
 
   return (
     <View style={styles.container}>
