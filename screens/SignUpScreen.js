@@ -1,9 +1,8 @@
 import {useState} from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { TouchableOpacity } from 'react-native-web';
 
 const auth = getAuth()
 const SignUpScreen  = ({ navigation }) => {
