@@ -12,11 +12,14 @@ const SignUpScreen  = ({ navigation }) => {
   const [validationMessage, setValidationMessage] = useState('')
 
 
-  let validateAndSet = (value, valueToCompare, setValue) => {
-  value !== valueToCompare 
-  ? setValidationMessage('Password do not match') 
-  : setValidationMessage('')
-   setValue(value);  
+  let validateAndSet = (value,setValue) => {
+   setValue(value)
+}
+function checkPassword(firstpassword,secondpassword) {
+  if(firstpassword !== secondpassword){
+    setValidationMessage('Password do not match') 
+  }
+  else setValidationMessage('')
 }
   async function createAccount() {
     email === '' || password === '' 
@@ -44,17 +47,20 @@ const SignUpScreen  = ({ navigation }) => {
           placeholder='Password'
           containerStyle={{marginTop:10}}
           value={password}
-          onChangeText={(value) => validateAndSet(value, confirmPassword, setPassword)}
+          onChangeText={(value) => validateAndSet(value, setPassword)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
+          
+
             />
         <Input
           placeholder='confirm password'
           containerStyle={{marginTop:10}}
           value={confirmPassword}
-          onChangeText={(value) => validateAndSet(value, password, setConfirmPassword)}
+          onChangeText={(value) => validateAndSet(value,setConfirmPassword)}
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
+          onBlur={()=>checkPassword(password,confirmPassword)}
             />
             {<Text style={styles.error}>{validationMessage}</Text>}
         <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
