@@ -61,7 +61,7 @@ function checkPassword(firstpassword,secondpassword) {
           secureTextEntry
           leftIcon={<Icon name='key' size={16}/>}
           onBlur={()=>checkPassword(password,confirmPassword)}
-            />
+            />  
             {<Text style={styles.error}>{validationMessage}</Text>}
         <Button title="Sign up" buttonStyle={{marginTop:10}} onPress={createAccount} />
         <View>
